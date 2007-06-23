@@ -1,6 +1,23 @@
-function ShowIcon(link, text, button)
+local function RestorePositions()
+	ItemRefTooltipTexture10:Hide()
+
+	ItemRefTooltipTextLeft1:ClearAllPoints()
+	ItemRefTooltipTextLeft1:SetPoint("TOPLEFT", ItemRefTooltip, "TOPLEFT", 8, -10 )
+
+	ItemRefTooltipTextLeft2:ClearAllPoints()
+	ItemRefTooltipTextLeft2:SetPoint("TOPLEFT", ItemRefTooltipTextLeft1, "BOTTOMLEFT", 0, -2 )
+end
+
+local function ShowIcon( link, text, button )
+	-- Clicking on an item link and then an enchant will show the icon
+	if( string.match( link, "Henchant:" ) ) then
+		RestorePositions()
+		return
+	end
+	
 	local icon = select( 10, GetItemInfo( link ) )
 	if( not icon ) then
+		RestorePositions()
 		return
 	end
 
