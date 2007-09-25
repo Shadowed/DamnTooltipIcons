@@ -1,4 +1,4 @@
-## Interface: 20100
+## Interface: 20200
 ## Title: Damn Tekkub
 ## Notes: Shows an items icon inside the tooltip
 
