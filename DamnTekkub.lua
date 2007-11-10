@@ -37,7 +37,7 @@ local function ShowIcon( link, text, button )
 	local width = ItemRefTooltipTexture10:GetWidth() + ItemRefTooltipTextLeft1:GetWidth() + 22
 	
 	if( width >= ItemRefTooltip:GetWidth() ) then
-		ItemRefTooltip:SetWidth( width + 22 )
+		ItemRefTooltip:SetWidth(width + 22)
 	end
 end
 
