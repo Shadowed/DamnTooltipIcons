@@ -1,23 +1,17 @@
-local function RestorePositions()
+local function restorePositions()
 	ItemRefTooltipTexture10:Hide()
 
 	ItemRefTooltipTextLeft1:ClearAllPoints()
-	ItemRefTooltipTextLeft1:SetPoint("TOPLEFT", ItemRefTooltip, "TOPLEFT", 8, -10 )
+	ItemRefTooltipTextLeft1:SetPoint("TOPLEFT", ItemRefTooltip, "TOPLEFT", 8, -10)
 
 	ItemRefTooltipTextLeft2:ClearAllPoints()
-	ItemRefTooltipTextLeft2:SetPoint("TOPLEFT", ItemRefTooltipTextLeft1, "BOTTOMLEFT", 0, -2 )
+	ItemRefTooltipTextLeft2:SetPoint("TOPLEFT", ItemRefTooltipTextLeft1, "BOTTOMLEFT", 0, -2)
 end
 
-local function ShowIcon( link, text, button )
-	-- Clicking on an item link and then an enchant will show the icon
-	if( string.match( link, "Henchant:" ) ) then
-		RestorePositions()
-		return
-	end
-	
-	local icon = select( 10, GetItemInfo( link ) )
-	if( not icon ) then
-		RestorePositions()
+hooksecurefunc("SetItemRef", function(link, text, button)
+	local icon = select(10, GetItemInfo(link))
+	if( not icon or not string.match(link, "Hitem:") ) then
+		restorePositions()
 		return
 	end
 
@@ -29,16 +23,15 @@ local function ShowIcon( link, text, button )
 	ItemRefTooltipTexture10:Show()
 	
 	ItemRefTooltipTextLeft1:ClearAllPoints()
-	ItemRefTooltipTextLeft1:SetPoint("TOPLEFT", ItemRefTooltipTexture10, "TOPLEFT", 24, -2 )
+	ItemRefTooltipTextLeft1:SetPoint("TOPLEFT", ItemRefTooltipTexture10, "TOPLEFT", 24, -2)
 
 	ItemRefTooltipTextLeft2:ClearAllPoints()
-	ItemRefTooltipTextLeft2:SetPoint("TOPLEFT", ItemRefTooltip, "TOPLEFT", 8, -28 )
+	ItemRefTooltipTextLeft2:SetPoint("TOPLEFT", ItemRefTooltip, "TOPLEFT", 8, -28)
 	
-	local width = ItemRefTooltipTexture10:GetWidth() + ItemRefTooltipTextLeft1:GetWidth() + 22
+	local textRight = ItemRefTooltipTextLeft1:GetRight()
+	local closeLeft = ItemRefCloseButton:GetLeft()
 	
-	if( width >= ItemRefTooltip:GetWidth() ) then
-		ItemRefTooltip:SetWidth(width + 22)
+	if( closeLeft <= textRight ) then
+		ItemRefTooltip:SetWidth(ItemRefTooltip:GetWidth() + (textRight - closeLeft))
 	end
-end
-
-hooksecurefunc("SetItemRef", ShowIcon)
+end)

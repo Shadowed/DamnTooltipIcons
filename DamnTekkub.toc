@@ -1,7 +1,6 @@
-## Interface: 20300
+## Interface: 30000
 ## Title: Damn Tekkub
 ## Notes: Shows an items icon inside the tooltip
-## Version: $Revision$
 ## Author: Mayen
 
 DamnTekkub.lua
