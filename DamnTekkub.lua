@@ -10,10 +10,12 @@ end
 
 hooksecurefunc("SetItemRef", function(link, text, button)
 	local icon = select(10, GetItemInfo(link))
-	if( not icon or not string.match(link, "Hitem:") ) then
+	if( not icon or not string.match(link, "item:") ) then
 		restorePositions()
 		return
 	end
+	
+	
 
 	ItemRefTooltipTexture10:ClearAllPoints()
 	ItemRefTooltipTexture10:SetPoint("TOPLEFT", ItemRefTooltip, "TOPLEFT", 8, -7)
