@@ -1,0 +1,6 @@
+## Interface: 30300
+## Title: Damn Tooltip Icons
+## Notes: Shows an icons inside item, achievement and spell links from chat
+## Author: Shadowed
+
+DamnTooltipIcons.lua
